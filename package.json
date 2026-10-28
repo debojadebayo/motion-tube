@@ -1,0 +1,43 @@
+{
+  "name": "youtube-inserts",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "serve": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "@fontsource/outfit": "^5.3.0",
+    "@motion-canvas/2d": "^3.17.2",
+    "@motion-canvas/core": "^3.17.2",
+    "@motion-canvas/ffmpeg": "^1.1.0"
+  },
+  "devDependencies": {
+    "@motion-canvas/ui": "^3.17.2",
+    "@motion-canvas/vite-plugin": "^3.17.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@ffmpeg-installer/darwin-arm64",
+      "@ffmpeg-installer/darwin-x64",
+      "@ffmpeg-installer/linux-arm",
+      "@ffmpeg-installer/linux-arm64",
+      "@ffmpeg-installer/linux-ia32",
+      "@ffmpeg-installer/linux-x64",
+      "@ffmpeg-installer/win32-ia32",
+      "@ffmpeg-installer/win32-x64",
+      "@ffprobe-installer/darwin-arm64",
+      "@ffprobe-installer/darwin-x64",
+      "@ffprobe-installer/linux-arm",
+      "@ffprobe-installer/linux-arm64",
+      "@ffprobe-installer/linux-ia32",
+      "@ffprobe-installer/linux-x64",
+      "@ffprobe-installer/win32-ia32",
+      "@ffprobe-installer/win32-x64"
+    ]
+  }
+}
