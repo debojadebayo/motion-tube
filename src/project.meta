@@ -2,7 +2,10 @@
   "version": 1,
   "shared": {
     "background": null,
-    "range": [0, null],
+    "range": [
+      0,
+      null
+    ],
     "size": {
       "x": 1920,
       "y": 1080
