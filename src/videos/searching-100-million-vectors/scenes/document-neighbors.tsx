@@ -1,7 +1,7 @@
 import {Line, Node, Rect, Txt, makeScene2D} from '@motion-canvas/2d';
 import {all, createRef, easeInOutCubic, easeOutCubic, useTime, waitFor} from '@motion-canvas/core';
 
-import {loadFonts, theme} from '../theme';
+import {loadFonts, theme} from '../../../shared/theme';
 
 const duration = 13.5;
 const positions: [number, number][] = [

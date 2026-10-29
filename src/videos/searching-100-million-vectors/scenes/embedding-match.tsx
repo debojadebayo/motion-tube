@@ -9,7 +9,7 @@ import {
   waitFor,
 } from '@motion-canvas/core';
 
-import {loadFonts, theme} from '../theme';
+import {loadFonts, theme} from '../../../shared/theme';
 
 // Illustrative values, shared between the opening list and the final comparison.
 const embeddings = [

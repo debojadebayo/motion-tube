@@ -1,0 +1,16 @@
+{
+  "title": "Searching 100 Million Vectors",
+  "renders": {
+    "friendship-group": {"script": "scripts/render-friendship.sh", "seconds": 13},
+    "friendship-route": {"script": "scripts/render-friendship-route.sh", "seconds": 7.5},
+    "document-neighbors": {"script": "scripts/render-document-neighbors.sh", "seconds": 13.5},
+    "document-neighbor-walk": {"script": "scripts/render-document-neighbor-walk.sh", "seconds": 11.5},
+    "fifty-thousand-document-search": {"script": "scripts/render-fifty-thousand-document-search.sh", "seconds": 7},
+    "brixton-enfield-restaurant": {"script": "scripts/render-brixton-enfield-restaurant.sh", "seconds": 10},
+    "document-101-dead-end": {"script": "scripts/render-document-101-dead-end.sh", "seconds": 35},
+    "document-57-local-minimum": {"script": "scripts/render-document-57-local-minimum.sh", "seconds": 11.5},
+    "hnsw-stacked-floors": {"script": "scripts/render-hnsw-stacked-floors.sh", "seconds": 21},
+    "hnsw-links-by-floor": {"script": "scripts/render-hnsw-links-by-floor.sh", "seconds": 23},
+    "vector-search-recap": {"script": "scripts/render-vector-search-recap.sh", "seconds": 25}
+  }
+}

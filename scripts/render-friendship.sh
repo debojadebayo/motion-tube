@@ -2,14 +2,16 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
-mkdir -p output
+render_output="${1:-output/friendship-group.mp4}"
+mkdir -p "$(dirname "$render_output")"
+mkdir -p output/.friendship-build
 
-CLANG_MODULE_CACHE_PATH=/tmp/motion-tube-clang-cache \
-SWIFT_MODULE_CACHE_PATH=/tmp/motion-tube-swift-cache \
-  swiftc -O scripts/render-friendship.swift -o /tmp/render-friendship
+CLANG_MODULE_CACHE_PATH="$PWD/output/.friendship-build/clang-cache" \
+SWIFT_MODULE_CACHE_PATH="$PWD/output/.friendship-build/swift-cache" \
+  swiftc -O src/videos/searching-100-million-vectors/renderers/render-friendship.swift -o output/.friendship-build/renderer
 
-/tmp/render-friendship | ffmpeg -v warning \
+output/.friendship-build/renderer | ffmpeg -v warning \
   -f rawvideo -pix_fmt bgra -s 1920x1080 -r 30 -i - \
   -vf scale=3840:2160:flags=lanczos \
   -c:v libx264 -pix_fmt yuv420p -crf 18 -preset medium \
-  -movflags +faststart -y output/friendship-group.mp4
+  -movflags +faststart -y "$render_output"

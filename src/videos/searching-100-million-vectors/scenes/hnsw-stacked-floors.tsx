@@ -1,7 +1,7 @@
 import {Circle, Line, Node, Rect, makeScene2D} from '@motion-canvas/2d';
 import {all, createRef, easeInOutCubic, easeOutBack, useTime, waitFor} from '@motion-canvas/core';
 
-import {theme} from '../theme';
+import {theme} from '../../../shared/theme';
 
 const duration = 21;
 const orange = '#bd5b1c';

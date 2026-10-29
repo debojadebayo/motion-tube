@@ -3,9 +3,15 @@ set -euo pipefail
 
 fail() { printf 'publish-render: %s\n' "$*" >&2; exit 1; }
 
-[[ $# -eq 2 ]] || fail 'Usage: bash scripts/publish-render.sh <source-mp4> <scene-slug>'
+[[ $# -eq 2 || $# -eq 3 ]] || fail 'Usage: bash scripts/publish-render.sh <source-mp4> [video-slug] <scene-slug>'
 source=$1
-slug=$2
+if [[ $# -eq 3 ]]; then
+  video_slug=$2
+  slug=$3
+  [[ $video_slug =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || fail 'Video slug must contain lowercase letters or numbers separated by single hyphens.'
+else
+  slug=$2
+fi
 [[ $slug =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || fail 'Scene slug must contain lowercase letters or numbers separated by single hyphens.'
 [[ $slug != project ]] || fail 'Use a scene name instead of project.'
 
@@ -39,6 +45,9 @@ awk -v rate="$rate" -v duration="$duration" 'BEGIN {
 }' || fail 'Source must have a 30fps video stream and positive duration.'
 
 output_dir="$primary_root/output"
+if [[ $# -eq 3 ]]; then
+  output_dir="$output_dir/$video_slug"
+fi
 destination="$output_dir/$slug.mp4"
 if [[ -e $destination || -L $destination ]]; then
   [[ -f $destination ]] || fail "Destination is not a regular file: $destination"

@@ -8,7 +8,7 @@ import {
   waitFor,
 } from '@motion-canvas/core';
 
-import {loadFonts, theme} from '../theme';
+import {loadFonts, theme} from '../../../shared/theme';
 
 const background = '#f5f5f5';
 const skin = '#f3c9a5';

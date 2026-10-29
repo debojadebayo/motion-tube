@@ -1,7 +1,7 @@
 import {Layout, Rect, Txt, makeScene2D} from '@motion-canvas/2d';
 import {all, createRef, easeInCubic, easeOutCubic, waitFor} from '@motion-canvas/core';
 
-import {loadFonts, theme} from '../theme';
+import {loadFonts, theme} from '../../../shared/theme';
 
 const label = 'KEY POINT';
 const phrase = 'Cut while they move';

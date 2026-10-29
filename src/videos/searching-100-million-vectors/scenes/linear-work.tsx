@@ -8,7 +8,7 @@ import {
   waitFor,
 } from '@motion-canvas/core';
 
-import {loadFonts, theme} from '../theme';
+import {loadFonts, theme} from '../../../shared/theme';
 
 export default makeScene2D(function* (view) {
   const documentLabel = createRef<Txt>();

@@ -1,7 +1,7 @@
 import {Circle, Line, Node, Rect, Txt, makeScene2D} from '@motion-canvas/2d';
 import {all, createRef, easeOutBack, easeOutCubic, useTime, waitFor} from '@motion-canvas/core';
 
-import {loadFonts, theme} from '../theme';
+import {loadFonts, theme} from '../../../shared/theme';
 
 const duration = 10;
 const burntOrange = '#bd5b1c';

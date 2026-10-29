@@ -1,9 +1,9 @@
 import {Video, makeScene2D} from '@motion-canvas/2d';
 import {createRef, waitFor} from '@motion-canvas/core';
 
-const embeddings = new URL('../../output/words-to-embeddings.mp4', import.meta.url).href;
-const documentGraph = new URL('../../output/document-neighbors.mp4', import.meta.url).href;
-const stackedGraphs = new URL('../../output/hnsw-stacked-floors-v3.mp4', import.meta.url).href;
+const embeddings = new URL('../assets/reused/words-to-embeddings.mp4', import.meta.url).href;
+const documentGraph = new URL('../assets/reused/document-neighbors.mp4', import.meta.url).href;
+const stackedGraphs = new URL('../assets/reused/hnsw-stacked-floors-v3.mp4', import.meta.url).href;
 
 export default makeScene2D(function* (view) {
   const first = createRef<Video>();

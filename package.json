@@ -5,7 +5,9 @@
   "scripts": {
     "start": "vite",
     "serve": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "new:video": "node scripts/new-video.mjs",
+    "render": "node scripts/render-scene.mjs"
   },
   "dependencies": {
     "@fontsource/outfit": "^5.3.0",
