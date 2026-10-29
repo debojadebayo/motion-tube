@@ -1,6 +1,6 @@
 # YouTube inserts
 
-Motion Canvas project for short animations dropped into a YouTube edit: a Fortune 500 sign, a CEO speech, a paper-to-computer library, a words-to-embeddings transformation, a coordinate map, a semantic proximity graph, an embedding match, a search-scale comparison, a linear-work comparison, a friendship graph, a full-frame chapter card, a lower third, and a callout. Scenes use a 1920×1080 canvas. The editor previews at 60 fps and renders at 3840×2160, 30 fps.
+Motion Canvas project for short animations dropped into a YouTube edit: a Fortune 500 sign, a CEO speech, a paper-to-computer library, a words-to-embeddings transformation, a coordinate map, a semantic proximity graph, an embedding match, a search-scale comparison, a linear-work comparison, a friendship graph, a friendship route, a document-neighbor graph, a document-neighbor walk, a 50,000-document search, a Brixton-to-Enfield map, a full-frame chapter card, a lower third, and a callout. Scenes use a 1920×1080 canvas. The editor previews at 60 fps and renders at 3840×2160, 30 fps.
 
 ## Run the editor
 
@@ -33,17 +33,27 @@ The words for each insert live in its scene file. Change the text there without 
 | Search scale | `src/scenes/search-scale.tsx` | Compares the script's 100-million and 1-billion document search times. |
 | Linear work | `src/scenes/linear-work.tsx` | Shows ten times the documents requiring ten times the work. |
 | Friendship group | `src/scenes/friendship-group.tsx` | Turns a list of friends into a connected graph. |
+| Friendship route | `src/scenes/friendship-route.tsx` | Adds You and traces You → Daniel → Femi → Emmanuel → Margaret in orange. |
+| Document neighbors | `src/scenes/document-neighbors.tsx` | Moves a long document list into a sparse network of nearby neighbors. |
+| Document neighbor walk | `src/scenes/document-neighbor-walk.tsx` | Starts at Doc 03 and checks nearby documents before stepping to Doc 05 and Doc 07. |
+| 50,000 document search | `src/scenes/fifty-thousand-document-search.tsx` | Illustrates a question crossing a large document graph in about 900 jumps. |
+| Brixton to Enfield | `src/scenes/brixton-enfield-restaurant.tsx` | Shows a mate's Nigerian restaurant recommendation and its location far north of Brixton. |
+| Document 101 dead end | `src/scenes/document-101-dead-end.tsx` | Steps from Doc 02 to 27 to 43, then connects Doc 101 to Doc 43. |
+| Document 57 local minimum | `src/scenes/document-57-local-minimum.tsx` | Reveals Doc 57 through a temporarily worse step and shows the better connection. |
+| HNSW stacked floors | `src/scenes/hnsw-stacked-floors.tsx` | Turns one graph into nested floors: all documents on floor zero, fewer on each higher floor. |
+| HNSW links by floor | `src/scenes/hnsw-links-by-floor.tsx` | Starts with tight floor-zero clusters, then shows sparser upper floors and longer links. |
+| Three-step vector search recap | `src/scenes/vector-search-recap.tsx` | Reuses the embeddings, document graph, and text-free HNSW clips in a timed recap. |
 | Chapter card | `src/scenes/title-card.tsx` | Full-frame card. It paints its own background. |
 | Lower third | `src/scenes/lower-third.tsx` | Name and role over the footage, lower left. |
 | Callout | `src/scenes/callout.tsx` | A short point that pops in above center. |
 
 To add an insert, copy a scene file, then import it in `src/project.ts` and add it to `scenes`.
 
-Shared colors and the Outfit typeface live in `src/theme.ts`. The Fortune 500 sign, CEO, library, embedding, map, semantic proximity, embedding match, search scale, linear work, and friendship group scenes use an off-white `#f5f5f5` background.
+Shared colors and the Outfit typeface live in `src/theme.ts`. The Fortune 500 sign, CEO, library, embedding, map, semantic proximity, embedding match, search scale, linear work, friendship group, friendship route, document neighbors, document neighbor walk, 50,000-document search, and Brixton-to-Enfield scenes use an off-white `#f5f5f5` background.
 
 ## Drop a clip into the edit
 
-The project background is transparent. In the editor, the lower third and callout sit on a checkerboard so you can see what will cover the footage. The Fortune 500 sign, CEO speech, library, embedding, map, semantic proximity, embedding match, search scale, linear work, friendship group, and chapter card scenes fill the frame themselves.
+The project background is transparent. In the editor, the lower third and callout sit on a checkerboard so you can see what will cover the footage. The Fortune 500 sign, CEO speech, library, embedding, map, semantic proximity, embedding match, search scale, linear work, friendship group, friendship route, document neighbors, document neighbor walk, 50,000-document search, Brixton-to-Enfield map, and chapter card scenes fill the frame themselves.
 
 **Fortune 500 sign.** In Video Settings, set the range to preview frames 0 through 268, keep the exporter on Video (FFmpeg), and render. The MP4 lands in `output/`. Name the rendered file before rendering another scene. The sign clip has an off-white background, so you can use it as a full-screen cut in Descript.
 
@@ -66,6 +76,26 @@ The project background is transparent. In the editor, the lower third and callou
 **Friendship group.** Set the range to preview frames 4770 through 5548 and render with Video (FFmpeg). The 13-second clip turns eight names, including Daniel, Femi, Margaret, and Emmanuel, from a list into circles starting at seven seconds, then draws varied friendship links. Daniel–Femi, Femi–Emmanuel, and Emmanuel–Margaret are ordinary links in this version; a later insert can highlight that route on the same graph.
 
 The friendship clip also has a command-line renderer: run `bash scripts/render-friendship.sh` to create `output/friendship-group.mp4` without opening the editor.
+
+**Friendship route.** Set the range to preview frames 5550 through 5998. The 7.5-second clip opens on the same eight-person network, adds a circle labelled “You,” then draws orange arrows through Daniel, Femi, Emmanuel, and Margaret. The completed route holds at the end. Run `bash scripts/render-friendship-route.sh` for a headless 3840×2160, 30 fps export to `output/friendship-route.mp4`.
+
+**Document neighbors.** Set the range to preview frames 6000 through 6808. The 13.5-second clip moves ten document cards out of a long list into an irregular space, then adds sparse links between nearby documents. Run `bash scripts/render-document-neighbors.sh` for a headless 3840×2160, 30 fps export to `output/document-neighbors.mp4`.
+
+**Document neighbor walk.** Set the range to preview frames 6810 through 7498. The 11.5-second clip starts at Doc 03, highlights its neighbors in teal, and steps to Doc 05 in burnt orange. At exactly 7 seconds, it checks Doc 05's neighbors and steps to Doc 07. Run `bash scripts/render-document-neighbor-walk.sh` for a headless 3840×2160, 30 fps export to `output/document-neighbor-walk-doc3.mp4`.
+
+**50,000 document search.** Set the range to preview frames 7500 through 7918. The 7-second clip uses a dense illustrative document graph, a question, a highlighted route, and a counter ending at approximately 900 jumps. The visible nodes and route are a visual shorthand, not a literal rendering of all 50,000 documents or 900 steps. Run `bash scripts/render-fifty-thousand-document-search.sh` for a headless 3840×2160, 30 fps export to `output/fifty-thousand-document-search-v2.mp4`.
+
+**Brixton to Enfield restaurant.** Set the range to preview frames 7920 through 8518. The 10-second clip shows a schematic London map, a mate's recommendation, then labels Enfield's Nigerian restaurant and the viewer's location in Brixton. The map is illustrative, not a street route. Run `bash scripts/render-brixton-enfield-restaurant.sh` for a headless 3840×2160, 30 fps export to `output/brixton-enfield-restaurant.mp4`.
+
+**Document 101 dead end.** Set the range to preview frames 8520 through 10618. The 35-second clip introduces Doc 101, reveals Doc 02 at 7 seconds, Doc 27 at 10 seconds, and Doc 43 at 18 seconds. Each step is geometrically closer to Doc 101. At 22 seconds, Doc 43's farther neighbors make the local dead end visible; at 33 seconds, Doc 101 connects to Doc 43. Run `bash scripts/render-document-101-dead-end.sh` for a headless 3840×2160, 30 fps export to `output/document-101-dead-end-v3.mp4`.
+
+**Document 57 local minimum.** Set the range to preview frames 10620 through 11308. The 11.5-second continuation begins with Doc 101 connected to Doc 43, reveals Doc 57 as a closer match at 2 seconds, and shows the alternative route through a temporarily farther document at 4.5 and 6.5 seconds. At 8.5 seconds, it shows the better Doc 57 connection and names the local minimum. Run `bash scripts/render-document-57-local-minimum.sh` for a headless 3840×2160, 30 fps export to `output/document-57-local-minimum-v2.mp4`.
+
+**HNSW stacked floors.** Set the range to preview frames 11310 through 12568. The 21-second text-free clip begins with one two-dimensional graph. At 8 seconds, it becomes floor zero with every illustrative document. At 14 seconds, maximum heights are assigned and a sparser floor one appears; floor two follows at 17 seconds with fewer nodes and longer connections. Run `bash scripts/render-hnsw-stacked-floors.sh` for a headless 3840×2160, 30 fps export to `output/hnsw-stacked-floors-v3.mp4`.
+
+**HNSW links by floor.** Set the range to preview frames 12570 through 13948. The 23-second text-free clip starts with twelve illustrative documents in three tight floor-zero clusters and connects each to a handful of nearby documents. Floor one appears at 11 seconds with six documents, floor two at 18 seconds with three, and floor three at 21 seconds with two. The horizontal links grow longer on each higher floor. Run `bash scripts/render-hnsw-links-by-floor.sh` for a headless 3840×2160, 30 fps export to `output/hnsw-links-by-floor-v2.mp4`.
+
+**Three-step vector search recap.** Set the range to preview frames 13950 through 15448. The 25-second clip reuses `words-to-embeddings.mp4` for 0–7.5 seconds, compresses `document-neighbors.mp4` into 7.5–15.5 seconds, then uses the 8–21-second portion of the text-free `hnsw-stacked-floors-v3.mp4` for 15.5–25 seconds. The source scene uses Motion Canvas `Video` nodes; `scripts/render-vector-search-recap.sh` is the exact-frame headless export recipe. It creates `output/vector-search-three-step-recap.mp4` at 3840×2160, 30 fps.
 
 **Chapter card.** Select its range in the timeline, keep the exporter on Video (FFmpeg), then render. The file lands in `output/` as an MP4 you can cut to.
 
